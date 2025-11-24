@@ -47,7 +47,7 @@ const TEAMS = [
       { id: 'q10', label: '20 − 10', answer: 2 },
     ],
     successMessage: '✅ All answers correct – well done, Blue Team!',
-    riddle: `You’ve counted the cash and seen what you win,
+    riddle: `You’ve cracked the code and solved every sum,
 Now go where journeys often begin.
 No wheels, no road, just height in view,
 Find the flat rooftop where choppers flew.`,
