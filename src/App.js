@@ -46,16 +46,6 @@ const TEAMS = [
       { id: 'q9', label: '12 x 2', answer: 10 },
       { id: 'q10', label: '20 − 10', answer: 2 },
     ],
-    successMessage: '✅ All answers correct – well done, Blue Team!',
-    riddle: `You’ve cracked the code and solved every sum,
-Now go where journeys often begin.
-No wheels, no road, just height in view,
-Find the flat rooftop where choppers flew.`,
-    taskTitle: 'Task 1: "Shadow Balance Sheet"',
-    taskDesc: `• Use your bodies and shadows on the ground to create a Balance Sheet.
-• One group is Assets, one group is Liabilities, and one person can be Equity in the middle.
-• Arrange yourselves so the shapes clearly show these three parts.
-• Take one group photo of your “shadow balance sheet” and show it to the facilitator.`
   },
   {
     id: 2,
@@ -74,16 +64,6 @@ Find the flat rooftop where choppers flew.`,
       { id: 'q19', label: '17 x 2', answer: 15 },
       { id: 'q20', label: '14 ÷ 7', answer: 21 },
     ],
-    successMessage: '✅ All answers correct – great job, Yellow Team!',
-    riddle: `You’ve found what’s left after tax and spend,
-Now go where fun and motion blend.
-Seats on chains that move with a pull,
-Right by the side of the shining pool.`,
-    taskTitle: 'Task 1: "Bear Market Hang-In"',
-    taskDesc: `• Use the swings safely to hang on in creative ways (sitting, holding chains, posing underneath, etc.).
-• While you hang, show determined / resilient expressions, as if surviving a tough “bear market”.
-• Make sure everyone appears in at least one photo.
-• Take one big team photo that shows how you “hang in there together”.`
   },
   {
     id: 3,
@@ -102,16 +82,6 @@ Right by the side of the shining pool.`,
       { id: 'q29', label: '8 x 7', answer: 1 },
       { id: 'q30', label: '13 − 1', answer: 13 },
     ],
-    successMessage: '✅ All answers correct – nice work, Green Team!',
-    riddle: `You’ve found the profit, the sums are sound,
-Now look for white lines on level ground.
-A net stretched tight from side to side,
-Where yellow balls in rallies glide.`,
-    taskTitle: 'Task 1: "Target Allocation Serve"',
-    taskDesc: `• Mark 2–3 target zones on the court using cones, bottles, or jackets.
-• Each zone represents something like Growth, Savings, or Risk Management.
-• Team members take turns gently serving or hitting the ball, trying to land it in a called-out zone (e.g., “Hit Growth!”).
-• Log a few successful hits in different zones then report to the facilitator.`
   },
   {
     id: 4,
@@ -130,16 +100,6 @@ Where yellow balls in rallies glide.`,
       { id: 'q39', label: '8 + 2', answer: 16 },
       { id: 'q40', label: '15 x 3', answer: 12 },
     ],
-    successMessage: '✅ All answers correct – awesome job, Red Team!',
-    riddle: `Your profit is clear, the sums are done,
-Now search for a place with shade and sun.
-Leaves and branches, flowers in view,
-A calm green space that’s waiting for you.`,
-    taskTitle: 'Task 1: "Long-Term Investment Hug"',
-    taskDesc: `• Choose a tree or small group of trees.
-• Everyone should hug or touch the tree(s), symbolizing a long-term investment you plan to nurture.
-• Arrange yourselves so the tree is clearly visible in the middle, with the team around it smiling.
-• Take one group photo of your “long-term investment hug”.`
   },
 ];
 
@@ -220,7 +180,7 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
             {selectedTeam ? selectedTeam.name : 'Team Adventure Quest'}
           </Typography>
-          {selectedTeam && (
+          {selectedTeam && !isSuccess && (
             <Button color="inherit" onClick={handleBack}>
               Change Team
             </Button>
@@ -294,12 +254,12 @@ function App() {
                 {selectedTeam.questions.map((q, index) => (
                   <Grid item xs={12} sm={6} key={q.id}>
                     <TextField
-  label={`(Q${index + 1}) ${q.label} = ?`} // <--- NEW WAY
-  variant="outlined"
-  fullWidth
-  type="number"
-  onChange={(e) => handleInputChange(q.id, e.target.value)}
-/>
+                      label={`(Q${index + 1}) ${q.label} = ?`}
+                      variant="outlined"
+                      fullWidth
+                      type="number"
+                      onChange={(e) => handleInputChange(q.id, e.target.value)}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -323,38 +283,19 @@ function App() {
           </Paper>
         )}
 
-        {/* SCREEN 3: SUCCESS / CLUE */}
+        {/* SCREEN 3: SUCCESS (NO BUTTON) */}
         {selectedTeam && isSuccess && (
           <Card elevation={5} sx={{ borderTop: `6px solid ${selectedTeam.color}` }}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom sx={{ color: 'green', fontWeight: 'bold' }}>
-                {selectedTeam.successMessage}
+            <CardContent sx={{ textAlign: 'center', py: 5 }}>
+              
+              <Typography variant="h4" gutterBottom sx={{ color: 'green', fontWeight: 'bold' }}>
+                Congratulations!
               </Typography>
               
-              <Box sx={{ my: 3, p: 2, bgcolor: '#f5f5f5', borderRadius: 2, borderLeft: `4px solid ${selectedTeam.color}` }}>
-                <Typography variant="h6" gutterBottom>
-                  Your First Clue:
-                </Typography>
-                <Typography variant="body1" sx={{ fontStyle: 'italic', whiteSpace: 'pre-line' }}>
-                  {selectedTeam.riddle}
-                </Typography>
-              </Box>
-
-              <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 2 }}>
-                {selectedTeam.taskTitle}
-              </Typography>
-              <Typography variant="body1" sx={{ whiteSpace: 'pre-line', mt: 1 }}>
-                {selectedTeam.taskDesc}
+              <Typography variant="h6" sx={{ mt: 2 }}>
+                You are successfully done with the math test.
               </Typography>
 
-              <Button 
-                variant="outlined" 
-                fullWidth 
-                sx={{ mt: 4, color: selectedTeam.color, borderColor: selectedTeam.color }}
-                onClick={handleBack}
-              >
-                Back to Home
-              </Button>
             </CardContent>
           </Card>
         )}
