@@ -294,12 +294,12 @@ function App() {
                 {selectedTeam.questions.map((q, index) => (
                   <Grid item xs={12} sm={6} key={q.id}>
                     <TextField
-                      label={`${index + 1}. ${q.label} = ?`}
-                      variant="outlined"
-                      fullWidth
-                      type="number"
-                      onChange={(e) => handleInputChange(q.id, e.target.value)}
-                    />
+  label={`(Q${index + 1}) ${q.label} = ?`} // <--- NEW WAY
+  variant="outlined"
+  fullWidth
+  type="number"
+  onChange={(e) => handleInputChange(q.id, e.target.value)}
+/>
                   </Grid>
                 ))}
               </Grid>
