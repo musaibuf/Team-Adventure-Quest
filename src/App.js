@@ -284,7 +284,7 @@ function App() {
             </Typography>
             
             <Alert severity="info" sx={{ mb: 3 }}>
-              <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
+              <Typography variant="body2" style={{ whiteSpace: 'pre-line', fontSize: '0.7rem' }}>
                 {COMMON_INSTRUCTIONS}
               </Typography>
             </Alert>
